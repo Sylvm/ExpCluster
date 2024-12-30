@@ -231,6 +231,7 @@ types.color =
         end
     end)
 
+--[[
 --- A player who has joined the game at least once, with a lower role
 types.lower_role_player =
 add("lower_role_player", function(input, player)
@@ -255,5 +256,6 @@ types.lower_role =
             return invalid{ "exp-commands-parse.role", input }
         end
     end)
+]]
 
 return types
