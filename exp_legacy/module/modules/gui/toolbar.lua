@@ -7,6 +7,11 @@ ToolbarState:set_metadata{
     stringify = function(value)
         local buttons, favourites = 0, 0
         for _, state in ipairs(value) do
+            -- Check the type of state must be a table
+            if type(state) ~= "table" then
+                error("Invalid state type: " .. type(state))
+            end
+
             buttons = buttons + 1
             if state.favourite then
                 favourites = favourites + 1
