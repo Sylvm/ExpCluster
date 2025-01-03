@@ -383,8 +383,8 @@ end
 Gui.inject_top_flow_order(function(player)
     local order = ToolbarState:get(player)
     -- Check the type of order must be a table
-    if type(order) == "bool" then
-        error("Invalid order type: " .. type(order))
+    if type(order) ~= "table" then
+        error("Invalid order type (table expected): " .. type(order))
         return {}
     end
     local elements = {}
