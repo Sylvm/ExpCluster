@@ -7,11 +7,6 @@ ToolbarState:set_metadata{
     stringify = function(value)
         local buttons, favourites = 0, 0
         for _, state in ipairs(value) do
-            -- Check the type of state must be a table
-            if type(state) ~= "table" then
-                error("Invalid state type: " .. type(state))
-            end
-
             buttons = buttons + 1
             if state.favourite then
                 favourites = favourites + 1
@@ -387,7 +382,11 @@ end
 --- Get the top order based on the players settings
 Gui.inject_top_flow_order(function(player)
     local order = ToolbarState:get(player)
-
+    -- Check the type of order must be a table
+    if type(order) == "bool" then
+        error("Invalid order type: " .. type(order))
+        return {}
+    end
     local elements = {}
     for index, state in ipairs(order) do
         elements[index] = Gui.defines[state.element_uid]
